@@ -65,6 +65,16 @@ a '(1 2 3 4 5)
 (my-fac 10) ;=>  3628800
 (my-fac 3)  ;=>  6
 
+(define (fib x)
+  (if (<= x 2) 1
+      (+ (fib (- x 1)) (fib (- x 2)))))
+
+;result
+(fib 5)	 ;=>  5
+(fib 8)	 ;=>  21
+(fib 12) ;=>  144
+(fib 30) ;=>  832040
+
 (define (sum x)
   (if (null? x) 0
       (+ (car x) (sum (cdr x)))))
