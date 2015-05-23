@@ -93,3 +93,33 @@ a 	;=> '(1 2 3 4 5)
 (sum z)		;=> 14
 (sum2 a) 	;=> 15
 (sum2 z) 	;=> 14
+
+(define greet 
+  (lambda (given [surname "Smith"])
+    (string-append "Hello, " given " " surname)))
+
+;result
+(greet "Dominco")			;=>  "Hello, Dominco Smith"
+(greet "Dominco" "Sajdl") 	;=>  "Hello, Dominco Sajdl"
+  
+(define lm 
+  (let ([f
+        (lambda (x #:arg y) (list y x))])
+    (list (f 1 #:arg 2)
+          (f #:arg 2 1))))
+
+;result
+lm 		;=>  '((2 1) (2 1))               
+
+(define cl 
+  (let ([f (case-lambda
+             [() 10]
+             [(x) x]
+             [(x y) (list y x)]
+             [r r])])
+    (list (f)
+          (f 1)
+          (f 1 2)
+          (f 1 2 3))))
+;result
+cl 	 ;=>  '(10 1 (2 1) (1 2 3))
