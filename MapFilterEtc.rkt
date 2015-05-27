@@ -61,3 +61,29 @@
 ; Result
 ; (getEvenNumber lst1) 	;=>  '(2 4)
 ; (getEvenNumber lst2) 	;=>  '(56) 
+
+; curring when you carry a function you get a function back that accepts the 
+: remaining arguments
+;curring and lumbda
+
+(define (expt-curring x)
+`	(lambda (y) (expt x y)))
+
+; Result;
+;((expt-curring 4) 2) 		;=> 16
+
+(define pow (lambda (x) (lambda (y)
+                           (if (= y 0) 1
+                               (* x ((pow x) (- y 1)))))))
+(define (powerTwo n)
+  ((pow n) 2))
+
+(define (powerThree n)
+  ((pow n) 3))
+
+;Result:
+; > (powerTwo 4)  	;=>  16
+; (powerTwo 8)  	;=>  64
+; (powerThree 8)  	;=>  512
+; (powerThree 2) 	;=>  8
+; (powerThree 4) 	;=>  64
