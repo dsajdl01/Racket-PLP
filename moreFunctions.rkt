@@ -25,6 +25,20 @@
 (secVal a)            ;=> 'p
 (secVal num)          ;=>  6
 
+; function which take list and sort list by removing un-order value
+
+(define (sorting ldt)
+  (define (helper y num)
+    (cond ((null? y) '())
+          ((< (car y) num) (helper (cdr y) num))
+           (else (cons (car y) (helper (cdr y) (car y))))))
+    (helper ldt 0))
+
+; Result
+; (sorting '(1 2 5 3 4 6 6 8 9 17))     ;=>  '(1 2 5 6 6 8 9 17)
+; (sorting num)                         ;=>  '(5 6 8 9)
+
+
 ;function which return a list of the squares of all innteger in the list
 (define (sqr-list x)
   (if (null? x) '()
